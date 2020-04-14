@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Clientes]
+(
+	[Id] INT NOT NULL CONSTRAINT [PK_Clientes] PRIMARY KEY IDENTITY(1,1),
+	[Nombres] NVARCHAR(250) NOT NULL, 
+	[Apellidos] NVARCHAR(250) NOT NULL, 
+	[Edad] INT NULL,
+	[Email] NVARCHAR(100) NOT NULL,
+	[Direccion] NVARCHAR(250) NULL,
+	[ComunaId] INT NULL FOREIGN KEY REFERENCES [dbo].[Comunas](Id)
+)

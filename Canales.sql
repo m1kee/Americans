@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Canales]
+(
+	[Id] INT NOT NULL CONSTRAINT [PK_Canales] PRIMARY KEY IDENTITY(1,1),
+	[Descripcion] NVARCHAR(500) NOT NULL
+)
