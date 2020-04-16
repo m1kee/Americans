@@ -69,7 +69,6 @@
     <Build Include="Cupones.sql" />
     <Build Include="Canales.sql" />
     <Build Include="MedioPagos.sql" />
-    <Build Include="RangoEdades.sql" />
     <Build Include="Regiones.sql" />
     <Build Include="Fechas.sql" />
   </ItemGroup>
