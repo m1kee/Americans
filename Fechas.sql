@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Fechas]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Fecha] DATE NOT NULL CONSTRAINT [PK_Fechas] PRIMARY KEY,
 	[Dia] INT NOT NULL,
 	[Semana] INT NOT NULL,
 	[Mes] INT NOT NULL,
