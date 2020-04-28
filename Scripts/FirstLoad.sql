@@ -1,5 +1,4 @@
-﻿
-BEGIN 
+﻿BEGIN 
 
 	INSERT INTO [dbo].[MedioPagos] ([Id], [Descripcion]) VALUES (1, 'Efectivo');
 	INSERT INTO [dbo].[MedioPagos] ([Id], [Descripcion]) VALUES (2, 'Transferencia');
@@ -15,9 +14,10 @@ BEGIN
 	INSERT INTO [dbo].[Canales] ([Id], [Descripcion]) VALUES (1, 'Presencial');
 	INSERT INTO [dbo].[Canales] ([Id], [Descripcion]) VALUES (2, 'Online');
 
-	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (1, 'PANDEMIA', 'Descuento por pandemia en cuarentena');
-	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (2, 'CRISIS', 'Descuento en shampoo para perros');
-	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (3, 'CORONAVIRUS', 'Descuento en mascarillas para gatos');
+	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (0, 'NA', 'Sin cupon', 0);
+	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (1, 'PANDEMIA', 'Descuento por pandemia en cuarentena', 25);
+	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (2, 'CRISIS', 'Descuento en shampoo para perros', 10);
+	INSERT INTO [dbo].[Cupones] ([Id], [Codigo], [Descripcion], [PorcentajeDescuento]) VALUES (3, 'CORONAVIRUS', 'Descuento en mascarillas para gatos', 5);
 
 	INSERT INTO [dbo].[Productos] ([Id], [TipoProductoId], [Nombre], [Descripcion], [Precio]) VALUES (1, 3, 'Champion dog - 15kg - Adultos - Perro', 'Comida para perros adultos de 15kg', 15990);
 	INSERT INTO [dbo].[Productos] ([Id], [TipoProductoId], [Nombre], [Descripcion], [Precio]) VALUES (2, 3, 'Pedigree - 20kg - Adultos - Perro', 'Comida para perros adultos de 20kg', 19990);
@@ -90,27 +90,33 @@ BEGIN
 	INSERT INTO [dbo].[Sucursales] ([Id], [Nombre], [Direccion], [ComunaId]) VALUES (1, 'Americans Maipú', 'Esquina Blanca 501', 20);
 	INSERT INTO [dbo].[Sucursales] ([Id], [Nombre], [Direccion], [ComunaId]) VALUES (2, 'Americans Providencia', 'Perez Valenzuela 1635', 32);
 
-	INSERT INTO [dbo].[Vendedores] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (0, 'BOT', 'Americans', 0, 'bot@americans.cl', 'N/A', 0, 0);
-	INSERT INTO [dbo].[Vendedores] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (18905524, 'Michael', 'Núñez', 25, 'michael@americans.cl', 'Hernan bravo cruz 817', 20, 1);
-	INSERT INTO [dbo].[Vendedores] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (12345678, 'Cristian', 'Contreras', 26, 'cristian@americans.cl', 'Alberto hurtado 385', 20, 1);
-	INSERT INTO [dbo].[Vendedores] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (87654321, 'Fabian', 'Quintanilla', 25, 'fabian@americans.cl', 'Esquina Blanca 501', 20, 2);
+	INSERT INTO [dbo].[Vendedores] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (0, 'BOT', 'Americans', 0, 'bot@americans.cl', 'N/A', 0, 0);
+	INSERT INTO [dbo].[Vendedores] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (18905524, 'Michael', 'Núñez', 25, 'michael@americans.cl', 'Hernan bravo cruz 817', 20, 1);
+	INSERT INTO [dbo].[Vendedores] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (12345678, 'Cristian', 'Contreras', 26, 'cristian@americans.cl', 'Alberto hurtado 385', 20, 1);
+	INSERT INTO [dbo].[Vendedores] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId], [SucursalId]) VALUES (87654321, 'Fabian', 'Quintanilla', 25, 'fabian@americans.cl', 'Esquina Blanca 501', 20, 2);
 
-	INSERT INTO [dbo].[Clientes] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (12345678, 'Jhon', 'Snow', 28, 'jhonsnow@gmail.com', 'El muro del norte', 19);
-	INSERT INTO [dbo].[Clientes] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (87654321, 'Bart', 'Simpson', 15, 'bartsimpson@gmail.com', 'calle siempre viva', 20);
-	INSERT INTO [dbo].[Clientes] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (12348765, 'Bob', 'Esponja', 20, 'bobesponja@gmail.com', 'Una piña debajo del mar', 32);
-	INSERT INTO [dbo].[Clientes] ([Id], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (43215678, 'Naruto', 'Uzumaki', 25, 'elhokage@gmail.com', 'Konoha', 26);
-
-	DECLARE @venta1 UID = NEWID();
-	DECLARE @venta2 UID = NEWID();
-	DECLARE @venta3 UID = NEWID();
-	DECLARE @venta4 UID = NEWID();
-	DECLARE @venta5 UID = NEWID();
+	INSERT INTO [dbo].[Clientes] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (12345678, 'Jhon', 'Snow', 28, 'jhonsnow@gmail.com', 'El muro del norte', 19);
+	INSERT INTO [dbo].[Clientes] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (87654321, 'Bart', 'Simpson', 15, 'bartsimpson@gmail.com', 'calle siempre viva', 20);
+	INSERT INTO [dbo].[Clientes] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (12348765, 'Bob', 'Esponja', 20, 'bobesponja@gmail.com', 'Una piña debajo del mar', 32);
+	INSERT INTO [dbo].[Clientes] ([Rut], [Nombres], [Apellidos], [Edad], [Email], [Direccion], [ComunaId]) VALUES (43215678, 'Naruto', 'Uzumaki', 25, 'elhokage@gmail.com', 'Konoha', 26);
 
 	DECLARE @fecha1 DATE = DATEFROMPARTS(2020, 3, 15);
 	DECLARE @fecha2 DATE = DATEFROMPARTS(2020, 3, 20);
 	DECLARE @fecha3 DATE = DATEFROMPARTS(2020, 3, 2);
 	DECLARE @fecha4 DATE = DATEFROMPARTS(2020, 1, 15);
 	DECLARE @fecha5 DATE = DATEFROMPARTS(2020, 2, 14);
+
+	INSERT INTO [dbo].[Fechas] ([Fecha], [Dia], [Semana], [Mes], [Semestre], [Anio]) VALUES (@fecha1, DAY(@fecha1), DATEPART(WEEK, @fecha1), MONTH(@fecha1), CASE WHEN DATEPART(QUARTER, @fecha1) >= 3 THEN 2 ELSE 1 END, YEAR(@fecha1));
+	INSERT INTO [dbo].[Fechas] ([Fecha], [Dia], [Semana], [Mes], [Semestre], [Anio]) VALUES (@fecha2, DAY(@fecha2), DATEPART(WEEK, @fecha2), MONTH(@fecha2), CASE WHEN DATEPART(QUARTER, @fecha2) >= 3 THEN 2 ELSE 1 END, YEAR(@fecha2));
+	INSERT INTO [dbo].[Fechas] ([Fecha], [Dia], [Semana], [Mes], [Semestre], [Anio]) VALUES (@fecha3, DAY(@fecha3), DATEPART(WEEK, @fecha3), MONTH(@fecha3), CASE WHEN DATEPART(QUARTER, @fecha3) >= 3 THEN 2 ELSE 1 END, YEAR(@fecha3));
+	INSERT INTO [dbo].[Fechas] ([Fecha], [Dia], [Semana], [Mes], [Semestre], [Anio]) VALUES (@fecha4, DAY(@fecha4), DATEPART(WEEK, @fecha4), MONTH(@fecha4), CASE WHEN DATEPART(QUARTER, @fecha4) >= 3 THEN 2 ELSE 1 END, YEAR(@fecha4));
+	INSERT INTO [dbo].[Fechas] ([Fecha], [Dia], [Semana], [Mes], [Semestre], [Anio]) VALUES (@fecha5, DAY(@fecha5), DATEPART(WEEK, @fecha5), MONTH(@fecha5), CASE WHEN DATEPART(QUARTER, @fecha5) >= 3 THEN 2 ELSE 1 END, YEAR(@fecha5));
+
+	DECLARE @venta1 UNIQUEIDENTIFIER = NEWID();
+	DECLARE @venta2 UNIQUEIDENTIFIER = NEWID();
+	DECLARE @venta3 UNIQUEIDENTIFIER = NEWID();
+	DECLARE @venta4 UNIQUEIDENTIFIER = NEWID();
+	DECLARE @venta5 UNIQUEIDENTIFIER = NEWID();
 
 	-- venta 1
 	INSERT INTO [dbo].[Ventas] ([UID], [Fecha], [RutVendedor], [RutCliente], [SucursalId], [IVA], [Descuento], [CuponId], [MedioPagoId], [CanalId], [ProductoId], [Precio], [Cantidad]) 
@@ -145,30 +151,3 @@ BEGIN
 	VALUES (@venta5, @fecha5, 18905524, 12345678, 1, 19, 10, 2, 1, 1, 11, 15990, 5);
 
 END 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
